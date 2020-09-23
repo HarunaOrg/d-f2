@@ -18,15 +18,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/movies', movieRoutes)
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'))
-}
+//Dummy Test
+app.get('/', (req, res) => {
+    res.json({
+        message: "Hello World!"
+    })
+})
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
-        console.log(`We are on port ${PORT}`)
-        app.listen(PORT)
+        console.log('on')
     })
     .catch(err => {
         console.log(err)
     })
+
+app.listen(PORT, console.log(`Server is running on port ${PORT}`))
