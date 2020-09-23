@@ -19,15 +19,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/movies', movieRoutes)
 
 //Dummy Test
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
+    console.log(MONGODB_URI)
     res.json({
-        message: "Hello World!"
+        message: MONGODB_URI
     })
 })
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
-        console.log('on')
+        console.log('off')
     })
     .catch(err => {
         console.log(err)
