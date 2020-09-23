@@ -1,14 +1,11 @@
 const path = require('path');
+require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
 const app = express();
 const PORT = process.env.PORT || 3000
-const MONGODB_URI = 'mongodb+srv://nick:c0ldlampinwithFL4V4@cluster0.lwbmc.mongodb.net/movie-catalog?retryWrites=true&w=majority'
-
-// mongodb://heroku_2h1pzcsf:pfnq13jdlkerjt38lq2s4rq1r4@ds221228.mlab.com:21228/heroku_2h1pzcsf
 
 const movieRoutes = require('./routes/movieRoutes')
 
@@ -20,18 +17,15 @@ app.use('/movies', movieRoutes)
 
 //Dummy Test
 app.get('/', (req, res, next) => {
-    console.log(MONGODB_URI)
     res.json({
-        message: MONGODB_URI
+        message: "message"
     })
 })
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
-        console.log('off')
+        app.listen(PORT, console.log(`Server is running on port ${PORT}`))
     })
     .catch(err => {
         console.log(err)
     })
-
-app.listen(PORT, console.log(`Server is running on port ${PORT}`))
