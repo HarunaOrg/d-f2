@@ -6,11 +6,22 @@ exports.getMovies = (req, res, next) => {
 }
 
 exports.addMovie = (req, res, next) => {
-    const name = req.body.name;
+    const title = req.body.title;
+    const director = req.body.director;
     const owned = req.body.owned;
+    const dates = req.body.dates;
+    const imdb = req.body.imdb;
+    const wiki = req.body.wiki;
+    const rottentomatoes = req.body.rottentomatoes
+
     const movie = new Movie({
-        name: name,
-        owned: owned
+        title: title,
+        director: director,
+        owned: owned,
+        dates: [...dates],
+        imdb: imdb,
+        wiki: wiki,
+        rottentomatoes: rottentomatoes
     })
     movie.save()
         .then(result => {
