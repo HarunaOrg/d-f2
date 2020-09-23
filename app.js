@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
-        console.log("We on")
+        console.log(`We are on port ${PORT}`)
         app.listen(PORT)
     })
     .catch(err => {
