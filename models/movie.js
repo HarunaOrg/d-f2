@@ -18,6 +18,10 @@ const movieSchema = mongoose.Schema({
     dates: [
         { type: Date }
     ],
+    yearReleased: {
+        type: Number,
+        required: true
+    },
     imdb: {
         type: String,
         required: true
