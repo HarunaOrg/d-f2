@@ -12,7 +12,8 @@ exports.addMovie = (req, res, next) => {
     const dates = req.body.dates;
     const imdb = req.body.imdb;
     const wiki = req.body.wiki;
-    const rottentomatoes = req.body.rottentomatoes
+    const rottentomatoes = req.body.rottentomatoes;
+    const yearReleased = req.body.yearReleased;
 
     const movie = new Movie({
         title: title,
@@ -21,7 +22,8 @@ exports.addMovie = (req, res, next) => {
         dates: [...dates],
         imdb: imdb,
         wiki: wiki,
-        rottentomatoes: rottentomatoes
+        rottentomatoes: rottentomatoes,
+        yearReleased: yearReleased
     })
     movie.save()
         .then(result => {
