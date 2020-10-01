@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 8080
 const movieRoutes = require('./routes/movieRoutes')
 
 app.use(bodyParser.json());
-app.use(cors())
-app.use(express.urlencoded({ extended: false }))
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/movies', movieRoutes)
