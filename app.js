@@ -15,8 +15,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-    res.headers('Access-Control-Allow-Origin', '*')
-    next();
+    res.set({
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'DELETE, GET, PATCH, POST, PUT',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+    })
+    if (req.method === 'OPTIONS') {
+        res.send(200)
+    }
+    else {
+        next();
+    }
 })
 
 app.use('/movies', movieRoutes)
