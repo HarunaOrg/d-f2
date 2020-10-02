@@ -18,7 +18,7 @@ app.use((req, res, next) => {
     res.set({
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'DELETE, GET, PATCH, POST, PUT',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        'Access-Control-Allow-Headers': '*'
     })
     if (req.method === 'OPTIONS') {
         res.send(200)
