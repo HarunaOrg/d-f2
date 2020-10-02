@@ -18,10 +18,6 @@ const movieSchema = mongoose.Schema({
     dates: [
         { type: Date }
     ],
-    yearReleased: {
-        type: Number,
-        required: true
-    },
     imdb: {
         type: String,
         required: true
@@ -32,6 +28,10 @@ const movieSchema = mongoose.Schema({
     },
     rottentomatoes: {
         type: String,
+        required: true
+    },
+    yearReleased: {
+        type: Number,
         required: true
     }
 })

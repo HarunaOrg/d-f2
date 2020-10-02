@@ -25,8 +25,10 @@ exports.addMovie = (req, res, next) => {
         rottentomatoes: rottentomatoes,
         yearReleased: yearReleased
     })
+    console.log(movie)
     movie.save()
         .then(result => {
+            console.log(movie)
             res.json(result)
         })
         .catch(err => {
