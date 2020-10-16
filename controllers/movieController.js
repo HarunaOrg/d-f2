@@ -5,6 +5,18 @@ exports.getMovies = (req, res, next) => {
         .then(movies => res.json(movies))
 }
 
+exports.getMovie = (req, res, next) => {
+    const movieId = req.params.movieId;
+    Movie.findById(movieId)
+      .then(movie => {
+         res.status(200).json(movie)
+      })
+      .catch(err => {
+        res.status(500)
+        console.log(err)
+      })
+  }
+
 exports.addMovie = (req, res, next) => {
     const title = req.body.title;
     const director = req.body.director;
@@ -32,4 +44,30 @@ exports.addMovie = (req, res, next) => {
         .catch(err => {
             console.log(err)
         })
+}
+
+exports.updateMovie = (req, res, next) => {
+    const movieId = req.params.movieId
+    const title = req.body.title
+    const director = req.body.director
+    const owned = req.body.owned
+    const dates = req.body.dates
+    const yearReleased = req.body.yearReleased
+    const reelGood = req.body.reelGood
+    Movie.findById(movieId)
+        .then(movie => {
+            movie.title = title
+            movie.director = director
+            movie.owned = owned
+            movie.dates = dates
+            movie.yearReleased = yearReleased
+            movie.reelGood = reelGood
+            return movie.save()
+        })
+        .then(movie => {       
+            res.status(200).json(movie)
+          })
+          .catch(err => {
+            console.log(err)
+          })
 }
